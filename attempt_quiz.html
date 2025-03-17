@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Attempt Quiz - LMS</title>
+    <link rel="stylesheet" type="text/css" href="styles.css">
+</head>
+<body>
+    <header>
+        <img src="logo.jpg" alt="LMS Logo" style="width: 100px; height: 100px;">
+        <h1>LMS - Learning Management System</h1>
+    </header>
+    <div>
+        <nav>
+            <a href="index.html">Homepage</a>
+            <a href="course_view.html">Courses</a> 
+        </nav>
+    </div>
+    <main class="attemptquiz">
+        <img src="banner.jpg" alt="Quiz Banner" style="width: 100%;">
+        <div class="quizdetails">
+            <h2>Course Name: Web Development</h2>
+            <h2>Course Code: WD381</h2>
+            <p>Topic: HTML Basics</p>
+            <p>Deadline: 11:59 PM, February 10, 2025</p>
+            <p>Attempts Allowed: 1</p>
+            <p id="countdown_timer">Time Allowed 10:00</p>
+        </div>
+        
+        <h3>Question 1</h3>
+        <p>What does HTML stand for?</p>
+        <div class="Qs">
+            <input type="radio" id="q1a" name="q1" value="Hyper Text Markup Language">
+            <label for="q1a">Hyper Text Markup Language</label><br>
+            <input type="radio" id="q1b" name="q1" value="Home Tool Markup Language">
+            <label for="q1b">Home Tool Markup Language</label><br>
+        </div>
+        <br>
+        <button class="ans">Submit Answer</button>
+        
+        <h3>Question 2</h3>
+        <p>Which of the following are HTML elements? (Select all that apply)</p>
+        <div class="Qs">
+        <input type="checkbox" id="q2a" name="q2" value="<div>">
+        <label for="q2a">&lt;div&gt;</label><br>
+        <input type="checkbox" id="q2b" name="q2" value="<span>">
+        <label for="q2b">&lt;span&gt;</label><br>
+        </div>
+        <br>
+        <button class="ans">Submit Answer</button>
+        
+        <br><br>
+        <a href="leaderboard.html">
+            <button class="FinQz">Finish Quiz</button>
+        </a>
+    </main>
+    <footer>
+        <p>&copy; 2025 LMS. All rights reserved.</p>
+    </footer>
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            let timer = 600; /*Time Allocated in Seconds<p id="countdown_timer">10:00</p>*/
+            timer_element = document.getElementById("countdown_timer")
+
+            function countDown(){
+                let minutes = Math.floor(timer/60);
+                let seconds = timer % 60;
+                console.log("Minutes", minutes, "Seconds", seconds);
+                timer = timer - 1;
+                timer_element.textContent = `Time Left: ${minutes}:${seconds.toString().padStart(2, '0')}`;
+
+                if(timer < 0){
+                    window.location.href = "leaderboard.html";
+                }
+            }
+
+            console.log("Initate Countdown");
+            setInterval(countDown, 1000);
+
+            const submit_buttons = document.querySelectorAll(".ans");
+            const questions = document.querySelectorAll(".Qs");
+            const finish_quiz = document.querySelector(".FinQz");
+            let final_score = 0;
+
+            submit_buttons.forEach((button, index) => {
+                button.addEventListener("click", (event) => {
+                    console.log(questions[index].querySelectorAll("input").length);
+                    console.log(questions[index].querySelectorAll("input"));
+                    let isAnswered = false;
+                    for (let x = 0; x < questions[index].querySelectorAll("input").length; x++){
+                        if(questions[index].querySelectorAll("input")[x].checked == true){
+                            isAnswered = true;
+                            break;
+                        }
+                    }
+                    if(isAnswered == false){
+                        alert("Please select an answer");
+                    }
+                    
+                });
+            });
+
+            /*Score Calculation*/
+            finish_quiz.addEventListener("click", function () {
+                const q1Answer = document.querySelector("input[name='q1']:checked"); /*Question 1*/
+                const q2Answers = document.querySelectorAll("input[name='q2']:checked");/*Question 2*/
+
+                if (q1Answer && q1Answer.value === "Hyper Text Markup Language") {
+                    final_score += 50;
+                }
+                q2Answers.forEach(answer => {
+                    if (answer.value === "<div>" || answer.value === "<span>") {
+                        final_score += 25;
+                    }
+                });
+                console.log("Final Score PRSENT!");
+                alert(`Your Quiz Score is ${final_score} out of 100.`);
+            });
+        });
+        
+
+    </script> 
+</body>
+</html>
