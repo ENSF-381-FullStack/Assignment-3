@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Signup - LMS</title>
+    <link rel="stylesheet" type="text/css" href="styles.css">
+    <style>
+        #signup-btn {
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            padding: 10px;
+            border-radius: 5px;
+            cursor: pointer;
+            width: 100px;
+            opacity: 0.5;
+            margin: 10px 0;
+        }
+        #signup-btn:hover {
+            background-color: #45A049;
+            opacity: 1;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <img src="logo.jpg" alt="LMS Logo" style="width: 100px; height: 100px;">
+        <h1>LMS - Learning Management System</h1>
+    </header>
+    <div>
+        <nav>
+            <a href="index.html">Homepage</a>
+        </nav>
+    </div>
+    
+    <div class="signup-container">
+        <br>
+        <h2 align="center">Sign Up</h2>
+        <div id="signup-msg" class="message-box"></div>
+        <form id="signup-form">
+            <label for="signup-username">Username:</label>
+            <input type="text" id="signup-username" required>
+
+            <label for="signup-password">Password:</label>
+            <input type="password" id="signup-password" required>
+
+            <label for="confirm-password">Confirm Password:</label>
+            <input type="password" id="confirm-password" required>
+
+            <label for="signup-email">Email:</label>
+            <input type="text" id="signup-email" required>
+
+            <button type="button" id="signup-btn">Sign Up</button>
+        </form>
+        <p align="center"><a href="login.html">Already have an account? Login here</a></p>
+    </div>
+    <script src="script.js"></script>
+    <footer>
+        <p>&copy; 2025 LMS. All rights reserved.</p>
+    </footer>
+</body>
+</html>
